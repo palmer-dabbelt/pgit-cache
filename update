@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import json
+import os
+
+repos = json.loads("".join(open("repos.conf", "r").readlines()))
+for server in repos:
+  server_name = server["server"]
+  for offset in server["repos"]:
+    local_path = "%s/%s" % (server_name, offset)
+    if not os.path.exists(local_path):
+      remote_path = "git@%s:%s.git" % (server_name, offset)
+      os.system("mkdir -p %s" % (local_path))
+      os.system("git clone --mirror --bare %s %s" % (remote_path, local_path))
+    os.system("git -C %s fetch --all --prune" % local_path)
