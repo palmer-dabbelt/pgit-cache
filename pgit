@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 CACHE_TOP="/var/cache/git"
 
