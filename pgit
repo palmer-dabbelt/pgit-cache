@@ -54,7 +54,6 @@ case "$op" in
       local_path="$(echo "$info" | cut -d' ' -f2)"
       remote_path="$(git config -l | grep "^submodule.$local_path.url=" | cut -d= -f2-)"
       cache_offset="$(echo "$remote_path" | sed 's!^https://\([A-Za-z0-9.]*\)/!\1/!' | sed 's@[.]git$@@')"
-      echo $cache_offset
 
       cache_dir="$CACHE_TOP/$cache_offset"
       unset reference
