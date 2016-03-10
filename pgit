@@ -41,12 +41,12 @@ case "$op" in
 
       (
         cd $local_dir
-	$0 smsur
+	$0 smisur
       )
     fi
   ;;
 
-  smsur)
+  smisur)
     git submodule init
     git submodule sync
     git submodule status | while read info
@@ -66,7 +66,7 @@ case "$op" in
       git submodule update --init $reference $local_path
       (
         cd $local_path
-	$0 smsur
+	$0 smisur
       )
     done
   ;;
