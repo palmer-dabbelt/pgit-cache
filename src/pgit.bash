@@ -2,7 +2,7 @@
 
 set -e
 
-CACHE_TOP="/var/cache/git"
+CACHE_TOP="@@TOP@@"
 
 op="$1"
 shift
