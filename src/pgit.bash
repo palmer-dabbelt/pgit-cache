@@ -61,6 +61,8 @@ case "$op" in
       then
         echo "Using local cache: $cache_dir"
         reference="--reference $cache_dir"
+      else
+        echo "Unable to find local cache: $cache_dir"
       fi
       git submodule update --init $reference $local_path
       (
