@@ -3,6 +3,9 @@
 import json
 import os
 
+os.system("git pull")
+os.system("make")
+
 repos = json.loads("".join(open("repos.conf", "r").readlines()))
 for server in repos:
   server_name = server["server"]
