@@ -52,7 +52,8 @@ case "$op" in
     git submodule status | while read info
     do
       local_path="$(echo "$info" | cut -d' ' -f2)"
-      remote_path="$(git config -l | grep "^submodule.$local_path.url=" | cut -d= -f2-)"
+      submodule_name="$(git config --file .gitmodules -l | grep "^submodule.*.path=$local_path$" | cut -d. -f2)"
+      remote_path="$(git config -l | grep "^submodule.$submodule_name.url=" | cut -d= -f2-)"
       cache_offset="$(echo "$remote_path" | sed 's!^https://\([A-Za-z0-9.]*\)/!\1/!' | sed 's!^git@\([A-Za-z0-9.]*\):!\1/!' | sed 's@[.]git$@@' | sed 's!^git://\([A-Za-z0-9.]*\)/!/\1/!')"
 
       cache_dir="$CACHE_TOP/$cache_offset"
